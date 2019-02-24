@@ -29,7 +29,6 @@ $(document).ready(function () {
                     '<div class="col-md-8">' +
                         '<div class="card-body">' +
                             '<h5 class="card-title"><a href="'+ bookpage +'">'+ title +'</a></h5>' +
-                            '<p class="card-text">By '+ author +'</p>' +
                             '<p class="card-text">Genre: '+ genre +'</p>' +
                             getStars(avgRating)+
                         '</div>'+
@@ -64,7 +63,7 @@ $(document).ready(function () {
         }
 
         for(var i = 0; i < emptystars; i++){
-            stars = stars + '<span class="fa fa-star" style="font-size:36px;"></span>'; 
+            stars = stars + '<span class="fa fa-star-o" style="font-size:36px; color:yellow;"></span>'; 
         }
         return stars;   // The function returns the product of p1 and p2
     }
