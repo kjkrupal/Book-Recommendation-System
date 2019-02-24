@@ -1,0 +1,22 @@
+body {
+    background-color: #53575e;
+}
+
+#book-area, .container {
+    background-color: #eaf0f9;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+nav {
+    background-color: #c11f1f !important;
+    width: 100% !important;
+}
+
+.navbar-brand {
+    color: white !important;
+    font-weight: bolder;
+}
+
+#main-book-link {
+    font-size: 30px;
+}
