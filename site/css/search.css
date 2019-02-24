@@ -1,14 +1,14 @@
 body {
-    background-color: #53575e;
+    background-color: #e3eced;
 }
 
 #book-area, .container {
-    background-color: #eaf0f9;
+    background-color: #b1c7c9;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 nav {
-    background-color: #c11f1f !important;
+    background-color: #005960 !important;
     width: 100% !important;
 }
 

@@ -2,6 +2,10 @@ $(document).ready(function () {
 
     var asin = window.location['search'].split("=")[1];
     
+    $('#main-search-button').click(function() {
+        self.location.href = "search.html?q=" + $('#main-search-bar').val();
+    });
+
     $.getJSON("http://192.168.43.210:8080/books/asin/"+asin, function(json) {
         
         var imgURL = json[0]['imgURL'];
@@ -17,6 +21,38 @@ $(document).ready(function () {
         $("#main-book-author").append(author);
         $("#main-book-genre").append(genre);
         $("#main-book-genre").append('<div class="mt-4">' + getStars(ratings) + '</div>');
+
+    });
+
+    $.getJSON("http://192.168.43.210:8080/reco/asin/"+asin, function(json) {
+        
+        if(json.length > 0){
+            $('#reco-area').append(<label id="reco" for="reco-area">You may also like.....</label>);
+        }
+        for(var i = 0; i < json.length; i++){
+            var asin = json[i]['asin'];
+            var title = json[i]['title'];
+            var author = json[i]['author'];
+            var genre = json[i]['genre'];
+            var avgRating = json[i]['ratings'];
+            var link = json[i]['link'];
+            var imgURL = json[i]['imgURL'];
+            var confidence = json[i]['confidence'];
+            var bookpage = "book.html?asin="+asin;
+
+            $('#reco-area').append(
+                '<div class="p-2 flex-fill bd-highlight ml-2 mr-2">' +
+                    '<div class="card" style="width: 18%;">' + 
+                    '<img src="'+ imgURL +'" class="card-img-top" alt="Card image cap" style ="width: 100px; height: 150px;">' +
+                    '<div class="card-body">' +
+                      '<p class="card-title reco"><a href="'+ bookpage +'">'+ title +'</a></p>' +
+                      '<p class="card-text reco">'+ confidence +'\% match</p>' +
+                    '</div>' +
+                  '</div>' +
+                '</div>'
+            );
+
+        }
 
     });
 

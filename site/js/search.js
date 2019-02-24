@@ -1,6 +1,11 @@
 $(document).ready(function () {
 
+    $('#main-search-button').click(function() {
+        window.location.assign("search.html?q=" + $('#main-search-bar').val());
+    });
     var title = window.location['search'].split("=")[1];
+
+    
 
     $.getJSON("http://192.168.43.210:8080/books/title/"+title, function(json) {
     
@@ -19,7 +24,7 @@ $(document).ready(function () {
                 '<div class="card" style="width: 100%;">' +
                     '<div class="row">' +
                     '<div class="col-md-4">' +
-                        '<img class="card-img-top mt-1 ml-1 mb-1" src="'+ imgURL +'" alt="Card image cap" style ="width: 150px; height: 200px;">' +
+                        '<img class="card-img-top mt-4 ml-4 mb-4" src="'+ imgURL +'" alt="Card image cap" style ="width: 150px; height: 200px;">' +
                     '</div>' +
                     '<div class="col-md-8">' +
                         '<div class="card-body">' +
@@ -48,10 +53,6 @@ $(document).ready(function () {
             emptystars = emptystars - 1;
         }
 
-
-        console.log(fullstars);
-        console.log(halfstars);
-        console.log(emptystars);
         var stars = "";
 
         for(var i = 0; i < fullstars; i++){
