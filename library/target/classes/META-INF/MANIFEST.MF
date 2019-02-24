@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: library
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: bhaveshsanghvi
+Implementation-Vendor-Id: com.turing
+Build-Jdk: 1.8.0_144
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/library
+Created-By: Maven Integration for Eclipse
+
