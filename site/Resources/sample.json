@@ -1,0 +1,35 @@
+{
+    "ISBN:0827229534": {
+        "publishers": [{
+            "name": "Chalice Press"
+        }],
+        "pagination": "xiv, 252 p. ;",
+        "identifiers": {
+            "lccn": ["98047291"],
+            "openlibrary": ["OL384708M"],
+            "isbn_10": ["0827229534"],
+            "librarything": ["284025"],
+            "goodreads": ["85040"]
+        },
+        "subtitle": "a sermon sampler",
+        "title": "Patterns of preaching",
+        "url": "https://openlibrary.org/books/OL384708M/Patterns_of_preaching",
+        "classifications": {
+            "dewey_decimal_class": ["252"],
+            "lc_classifications": ["BV4211.2 .P28 1998"]
+        },
+        "notes": "Includes bibliographical references and index.",
+        "number_of_pages": 252,
+        "cover": {
+            "small": "https://covers.openlibrary.org/b/id/631264-S.jpg",
+            "large": "https://covers.openlibrary.org/b/id/631264-L.jpg",
+            "medium": "https://covers.openlibrary.org/b/id/631264-M.jpg"
+        },
+        "publish_date": "1998",
+        "key": "/books/OL384708M",
+        "by_statement": "Ronald J. Allen, editor.",
+        "publish_places": [{
+            "name": "St. Louis, Mo"
+        }]
+    }
+}
