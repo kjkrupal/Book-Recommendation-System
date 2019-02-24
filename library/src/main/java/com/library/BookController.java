@@ -24,6 +24,7 @@ public class BookController {
     @CrossOrigin(origins="*")
     @RequestMapping(method = RequestMethod.GET, value="/books/title/{title}")
     public List<Book> getBooksByTitle(@PathVariable String title) {
+    	System.out.println("getBooksByTitle: controller");
         return bookService.getBooksByTitle(title);
     }
     
@@ -54,7 +55,4 @@ public class BookController {
     public List<Book> getRecommendationByAsin(@PathVariable String asin) {
         return recService.getRecommendationByAsin(asin);
     }
-    
-    
-    
 }

@@ -125,27 +125,28 @@ public class RecommendationService {
 				map.put(recommendedAsins.get(i).trim(),recommendedConfidence.get(i).trim());
 			}
 			
-			resultAsin = resultAsin.substring(0, resultAsin.length()-1);
-			
-			r3 = s.executeQuery("Select * from book where asin IN ("+resultAsin+")");
-			
-			while(r3.next()) {
-				Book b = new Book();
-	    		b.setTitle(r3.getString(1));
-	    		b.setAuthor(r3.getString(2));
-	    		b.setGenre(r3.getString(3));
-	    		b.setPublicationYear(r3.getString(4));
-	    		b.setLink(r3.getString(5));
-	    		b.setImgURL(r3.getString(6));
-	    		b.setRatings(r3.getString(7));
-	    		b.setAsin(r3.getString(8));
-	    		b.setConfidence(map.get(b.getAsin()));
-	    		if(Double.parseDouble(b.getConfidence())>0.20) {
-	    			b.setConfidence((Double.parseDouble(b.getConfidence())*100)+"");
-	    			list.add(b);
-	    		}
+			if(resultAsin.length()!=0) {
+				resultAsin = resultAsin.substring(0, resultAsin.length()-1);
+				r3 = s.executeQuery("Select * from book where UPPER(asin) IN ("+resultAsin.toUpperCase()+")");
+				
+				while(r3.next()) {
+					Book b = new Book();
+		    		b.setTitle(r3.getString(1));
+		    		b.setAuthor(r3.getString(2));
+		    		b.setGenre(r3.getString(3));
+		    		b.setPublicationYear(r3.getString(4));
+		    		b.setLink("http://asin.info/a/"+r3.getString(8));
+		    		b.setImgURL("http://images.amazon.com/images/P/"+r3.getString(8));
+		    		b.setRatings(r3.getString(7));
+		    		b.setAsin(r3.getString(8));
+		    		b.setConfidence(map.get(b.getAsin()));
+		    		
+		    		if(Double.parseDouble(b.getConfidence())>0.20) {
+		    			b.setConfidence((Double.parseDouble(b.getConfidence())*100)+"");
+		    			list.add(b);
+		    		}	
+				}
 			}
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

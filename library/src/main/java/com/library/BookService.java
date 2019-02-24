@@ -70,14 +70,12 @@ public class BookService {
 		    		b.setLink("http://asin.info/a/"+asin);
 		    		b.setImgURL("http://images.amazon.com/images/P/"+asin);
 		    		
-		    		
-		    			System.out.println("///");
-			    		NetworkClient c = new NetworkClient();
-			        	List<Map<String, String>> data = c.getData(asin);
-			        	if(data!=null && !data.isEmpty() && data.get(0)!=null && data.get(0).get("author")!=null && data.get(0).get("pubyear")!=null) {
-			        		b.setAuthor(data.get(0).get("author"));
-			        		b.setPublicationYear(data.get(0).get("pubyear"));
-			        	}
+		    		NetworkClient c = new NetworkClient();
+		        	List<Map<String, String>> data = c.getData(asin);
+		        	if(data!=null && !data.isEmpty() && data.get(0)!=null && data.get(0).get("author")!=null && data.get(0).get("pubyear")!=null) {
+		        		b.setAuthor(data.get(0).get("author"));
+		        		b.setPublicationYear(data.get(0).get("pubyear"));
+		        	}
 		    		list.add(b);
 		    	}
 			}
@@ -90,6 +88,8 @@ public class BookService {
     }
     
     public List<Book> getBooksByTitle(String title) {
+    	
+    	System.out.println("getBooksByTitle service");
     	List<Book> list = new ArrayList<Book>();
     	
     	ResultSet r;
@@ -98,9 +98,10 @@ public class BookService {
 			DriverManager.deregisterDriver(new org.postgresql.Driver());
 			Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres","postgres", "qwer");
 			Statement s = conn.createStatement();
-			
-			r = s.executeQuery("Select * from book where title like '%"+title+"%'");
-			
+			System.out.print("data base call start");
+			r = s.executeQuery("Select * from book where UPPER(title) like '%"+title.toUpperCase()+"%'");
+			System.out.print("data base call end");
+
 			while(r.next()) {
 				Book b = new Book();
 	    		b.setTitle(r.getString(1));
@@ -111,7 +112,7 @@ public class BookService {
 	    		b.setLink("http://asin.info/a/"+r.getString(8));
 	    		b.setImgURL("http://images.amazon.com/images/P/"+r.getString(8));
 	    		
-	    		if(r.getString(8)!=null) {
+	    		/*if(r.getString(8)!=null) {
 	    			System.out.println("///");
 		    		NetworkClient c = new NetworkClient();
 		        	List<Map<String, String>> data = c.getData(r.getString(8));
@@ -119,7 +120,7 @@ public class BookService {
 		        		b.setAuthor(data.get(0).get("author"));
 		        		b.setPublicationYear(data.get(0).get("pubyear"));
 		        	}
-	    		}
+	    		}*/
 	    		list.add(b);
 	    	}
 			
